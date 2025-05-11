@@ -26,7 +26,7 @@ function App() {
 
   const fetchStats = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/stats');
+      const res = await axios.get('/api/stats');
       setStats(res.data);
     } catch (err) {
       console.error('Erreur lors de la récupération des stats:', err);
@@ -66,7 +66,7 @@ function App() {
     e.preventDefault();
     if (!validateForm()) return;
     try {
-      const res = await axios.post('http://localhost:5000/api/participants', formData);
+      const res = await axios.post('/api/participants', formData);
       setMessage(res.data.message);
       setFormData({ prenom: '', nom: '', telephone: '', nni: '', wilaya: '' });
       fetchStats();
@@ -78,7 +78,7 @@ function App() {
 
   const handleExport = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/export', { responseType: 'blob' });
+      const res = await axios.get('/api/export', { responseType: 'blob' });
       const url = window.URL.createObjectURL(new Blob([res.data]));
       const link = document.createElement('a');
       link.href = url;
